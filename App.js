@@ -40,7 +40,6 @@ const App = () => {
                     value: textItem
                 }
             ])
-            console.log("itemListdapp", itemList)
             setTextItem("")
             Alert.alert('Producto Ingresado')
         }
