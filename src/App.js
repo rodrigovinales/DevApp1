@@ -1,16 +1,11 @@
 import React, { useState } from "react";
-import { ImageBackground, View, Alert, FlatList, TouchableOpacity, Text } from "react-native";
-import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
-import { styles } from "./styles";
+import { View, Alert } from "react-native";
+import { styles } from "../styles";
 
-import image from "./assets/imagenes/logo.jpg"
-import AddItem from "./components/AddItem";
-import Header from "./components/Header";
-import ModalItem from "./components/Modal";
-import FlatLista from "./components/lista";
-import ListaItem from "./components/lista/ListaItem"
-
-
+import AddItem from "../components/AddItem";
+import Header from "../components/Header";
+import ModalItem from "../components/Modal";
+import FlatLista from "../components/lista";
 
 const App = () => {
 
@@ -56,21 +51,15 @@ const App = () => {
         <View style={styles.general}>
             <View style={styles.container}>
                 <Header />
-                <AddItem onChange={onHandlerChangeItem}
+                <AddItem
+                    onChange={onHandlerChangeItem}
                     onAddItem={addItem}
                     value={textItem}
                 />
 
-                <FlatList
-                    data={itemList}
-                    renderItem={({ item }) => (
-                        <View style={{ marginTop: 20 }}>
-                            <Pressable onPress={() => onHandlerModal(item.id)}>
-                                <Text style={styles.itemLista}>ID: {item.id} // {item.value} // PULSA PARA REMOVER PRODUCTO</Text>
-                            </Pressable>
-                        </View>
-                    )}
-                    keyExtractor={item => item.id.toString()}
+                <FlatLista
+                    itemList={itemList}
+                    onHandlerModal={onHandlerModal}
                 />
 
                 <ModalItem

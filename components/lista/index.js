@@ -1,18 +1,21 @@
 import React from "react";
-import { FlatList,View,TouchableOpacity,Text } from "react-native"
+import { FlatList, Pressable } from "react-native"
 import ListaItem from "./ListaItem";
-import { styles } from "../../styles";
 
-export default function FlatLista(item, props) {
-
-    const { mostrarHandler } = props;
+export default function FlatLista({ itemList, onHandlerModal }) {
 
     return (
 
-        <View style={{ marginTop: 20 }}>
-            <TouchableOpacity onPress={mostrarHandler}>
-                <Text style={styles.itemLista}>ID: {item.id} // {item.value} // PULSA PARA REMOVER PRODUCTO</Text>
-            </TouchableOpacity>
-        </View>
+        <FlatList
+            data={itemList}
+            renderItem={({ item }) =>(
+                <Pressable onPress={() => onHandlerModal(item.id)}>
+                    <ListaItem
+                        {...item}
+                    />
+                </Pressable>)}
+            keyExtractor={item => item.id.toString()}
+        />
     )
 }
+

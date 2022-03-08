@@ -6,7 +6,6 @@ import { styles } from "../styles"
 const ModalItem = (props) => {
     const {visible, onDelete, noDelete } = props;
 
-    
     if (!visible) return null;
 
     return (
@@ -24,6 +23,5 @@ const ModalItem = (props) => {
         </Modal>
     )
 }
-
 
 export default ModalItem;
